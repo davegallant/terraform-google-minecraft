@@ -1,0 +1,5 @@
+difficulty              = "hard"
+google_cloud_project_id = "my-box-123456"
+machine_type            = "n1-highcpu-2"
+region                  = "us-east1"
+zone                    = "us-east1-b"
