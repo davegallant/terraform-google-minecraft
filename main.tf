@@ -16,7 +16,6 @@ provider "google" {
   region  = local.region
 }
 
-
 resource "random_id" "minecraft" {
   byte_length = 8
 }
