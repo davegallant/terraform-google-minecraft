@@ -1,0 +1,38 @@
+variable "google_cloud_project_id" {
+  description = "The project ID and project number are displayed on the project Dashboard Project info card"
+  type        = string
+}
+
+variable "region" {
+  description = "The region for all applicable resources"
+  type        = string
+}
+
+variable "zone" {
+  description = "The availability zone for all applicable resources"
+  type        = string
+}
+
+variable "machine_type" {
+  description = "The machine type of the compute instance running Minecraft"
+  type        = string
+  default     = "n1-highcpu-2"
+}
+
+variable "seed" {
+  default     = "-2143500864"
+  description = "The minecraft seed to generate the world"
+  type        = string
+}
+
+variable "difficulty" {
+  description = "The difficulty level of the server"
+  type        = string
+  default     = "easy"
+}
+
+variable "preemptible" {
+  description = "Whether or not to use preemptible instances"
+  type        = bool
+  default     = true
+}
