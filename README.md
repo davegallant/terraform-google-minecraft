@@ -13,6 +13,8 @@ This spins up a minecraft server using a static ip, a google compute instance an
 
 ```shell
 gcloud auth application-default login
+# The initialization prompts for a storage bucket that must be manually created and specified
+# https://cloud.google.com/storage/docs/creating-buckets
 terraform init
 terraform apply -var-file example.tfvars
 ```
