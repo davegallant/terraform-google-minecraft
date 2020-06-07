@@ -16,6 +16,10 @@ provider "google" {
   region  = local.region
 }
 
+provider "random" {
+  version = "~> 2.2.1"
+}
+
 resource "random_id" "minecraft" {
   byte_length = 8
 }

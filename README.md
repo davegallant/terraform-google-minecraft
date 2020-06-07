@@ -5,6 +5,14 @@ This spins up a minecraft server using a static ip, a google compute instance an
 ## Requirements
 
 - [google cloud account](https://console.cloud.google.com/getting-started)
+
+and either:
+- [bash](https://www.gnu.org/software/bash/)
+- [docker](https://docs.docker.com/get-docker/)
+
+or:
+
+
 - [gcloud cli](https://cloud.google.com/sdk)
 - [terraform](https://www.terraform.io/intro/index.html)
 
@@ -12,6 +20,10 @@ This spins up a minecraft server using a static ip, a google compute instance an
 ## Use
 
 ```shell
+# This will build the environment in docker and enter it
+# This is not necessary if all tools are installed externally on host
+./env.sh
+
 gcloud auth application-default login
 # The initialization prompts for a storage bucket that must be manually created and specified
 # https://cloud.google.com/storage/docs/creating-buckets
