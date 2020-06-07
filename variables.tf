@@ -20,7 +20,6 @@ variable "machine_type" {
 }
 
 variable "seed" {
-  default     = "-2143500864"
   description = "The minecraft seed to generate the world"
   type        = string
 }
