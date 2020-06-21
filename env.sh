@@ -4,7 +4,9 @@ set -euxo pipefail
 
 docker_image_name=terraform-google-minecraft
 
-DOCKER_BUILDKIT=1 docker build --build-arg LOCAL_UID="$(id -u)" . -t $docker_image_name
+export DOCKER_BUILDKIT=1
+
+docker build --build-arg LOCAL_UID="$(id -u)" . -t $docker_image_name
 
 docker run \
   -v "$PWD":/home/nix \

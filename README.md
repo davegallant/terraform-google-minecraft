@@ -10,6 +10,13 @@ and one of the following:
 - [nix](https://nixos.org/)
 - [docker](https://docs.docker.com/get-docker/)
 
+
+## Costs
+
+If this server is always running, it will cost ~$20/month.
+
+A [12-month free trial](https://cloud.google.com/free) includes $300 in credit.
+
 ## Use
 
 ```shell
