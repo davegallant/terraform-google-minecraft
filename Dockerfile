@@ -1,8 +1,7 @@
 FROM nixos/nix
-
-ARG LOCAL_UID=1000
-WORKDIR /home/nix
-RUN chown ${LOCAL_UID}:${LOCAL_UID} /home/nix
-COPY shell.nix /home/nix/
+RUN adduser nix --disabled-password
+COPY shell.nix .
 RUN nix-shell
+RUN chown -R nix:nix /nix
+USER nix
 ENTRYPOINT nix-shell
