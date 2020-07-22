@@ -1,6 +1,6 @@
 let
   channel = "nixos-20.03";
-  pkgs = import <nixpkgs> {};
+  pkgs = import <nixpkgs> { };
 in
 pkgs.mkShell {
   name = "terraform-google-minecraft";
