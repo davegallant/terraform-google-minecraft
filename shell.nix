@@ -5,7 +5,7 @@ in
 pkgs.mkShell {
   name = "terraform-google-minecraft";
   buildInputs = [
-    pkgs.terraform
+    pkgs.terraform_0_13
     pkgs.google-cloud-sdk
   ];
 }
