@@ -11,17 +11,9 @@ locals {
 }
 
 provider "google" {
-  version = "~> 3.21"
+  version = "~> 3.33.0"
   project = local.project
   region  = local.region
-}
-
-provider "random" {
-  version = "~> 2.2.1"
-}
-
-resource "random_id" "minecraft" {
-  byte_length = 8
 }
 
 resource "google_service_account" "minecraft" {
@@ -35,6 +27,10 @@ resource "google_compute_disk" "minecraft" {
   type  = "pd-standard"
   zone  = local.zone
   image = "cos-cloud/cos-stable"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 # Static IP address
@@ -44,7 +40,7 @@ resource "google_compute_address" "minecraft" {
 }
 
 resource "google_compute_instance_group_manager" "minecraft" {
-  name               = "minecraft-${random_id.minecraft.hex}"
+  name               = "minecraft"
   base_instance_name = "minecraft"
   target_size        = 1
   zone               = local.zone
@@ -56,12 +52,15 @@ resource "google_compute_instance_group_manager" "minecraft" {
 
 # Template that runs minecraft from a docker container
 resource "google_compute_instance_template" "minecraft" {
-  name         = "minecraft-template-${random_id.minecraft.hex}"
+  name_prefix  = "minecraft-template-"
   machine_type = var.machine_type
   tags         = ["minecraft"]
 
-  metadata_startup_script = <<-EOT
+  lifecycle {
+    create_before_destroy = true
+  }
 
+  metadata_startup_script = <<-EOT
   docker run -d \
     --name=minecraft \
     --restart=always \
@@ -71,7 +70,7 @@ resource "google_compute_instance_template" "minecraft" {
     -e EULA=TRUE \
     -e SEED=${var.seed} \
     -v /var/minecraft:/data \
-    itzg/minecraft-server:latest;
+    itzg/minecraft-server:${var.minecraft_version};
   EOT
 
   disk {
