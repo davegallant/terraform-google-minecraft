@@ -24,6 +24,12 @@ variable "seed" {
   type        = string
 }
 
+variable "minecraft_version" {
+  description = "The tag/version of the minecraft docker image. https://hub.docker.com/r/itzg/minecraft-server/tags"
+  type        = string
+  default     = "1.8.0"
+}
+
 variable "difficulty" {
   description = "The difficulty level of the server"
   type        = string

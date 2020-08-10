@@ -37,7 +37,6 @@ $ terraform apply -var-file example.tfvars
 
 - By default, this uses a `n1-highcpu-2` [preemptible vm instance](https://cloud.google.com/compute/docs/instances/preemptible) for cost savings. This means that the minecraft server could restart at any time, resulting in a couple minutes of downtime. This can also lead to a couple minutes of data loss depending on when game data was last written to disk. The `preemptible` flag and `machine_type` can be modified in the terraform [variables](./variables.tf). For pricing, see: https://cloud.google.com/compute/vm-instance-pricing
 - An instance group manager is used so that preemptible vm instances can be restarted
-- Because instance group managers are used, every time terraform does an apply, a random name will given to the instance group manager and vm instance template. This is to prevent a `resourceInUseByAnotherResource` that mentions `Error deleting instance template: googleapi: Error 400: The instance_template resource is already being used`
 
 ## Todo
 
