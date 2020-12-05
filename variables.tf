@@ -1,42 +1,42 @@
-variable "google_cloud_project_id" {
+variable google_cloud_project_id {
   description = "The project ID and project number are displayed on the project Dashboard Project info card"
   type        = string
 }
 
-variable "region" {
+variable region {
   description = "The region for all applicable resources"
   type        = string
 }
 
-variable "zone" {
+variable zone {
   description = "The availability zone for all applicable resources"
   type        = string
 }
 
-variable "machine_type" {
+variable machine_type {
   description = "The machine type of the compute instance running Minecraft"
   type        = string
   default     = "n1-highcpu-2"
 }
 
-variable "seed" {
+variable seed {
   description = "The minecraft seed to generate the world"
   type        = string
 }
 
-variable "minecraft_version" {
+variable minecraft_version {
   description = "The tag/version of the minecraft docker image. https://hub.docker.com/r/itzg/minecraft-server/tags"
   type        = string
-  default     = "1.8.0"
+  default     = "1.9.1"
 }
 
-variable "difficulty" {
+variable difficulty {
   description = "The difficulty level of the server"
   type        = string
   default     = "easy"
 }
 
-variable "preemptible" {
+variable preemptible {
   description = "Whether or not to use preemptible instances"
   type        = bool
   default     = true
