@@ -1,5 +1,5 @@
 let
-  channel = "nixos-20.03";
+  channel = "nixos-20.09";
   pkgs = import <nixpkgs> { };
 in
 pkgs.mkShell {

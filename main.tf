@@ -10,19 +10,19 @@ locals {
   zone    = var.zone
 }
 
-provider "google" {
-  version = "~> 3.33.0"
+provider google {
+  version = "~> 3.49.0"
   project = local.project
   region  = local.region
 }
 
-resource "google_service_account" "minecraft" {
+resource google_service_account minecraft {
   account_id   = "minecraft"
   display_name = "minecraft"
 }
 
 # Persistent disk
-resource "google_compute_disk" "minecraft" {
+resource google_compute_disk minecraft {
   name  = "minecraft"
   type  = "pd-standard"
   zone  = local.zone
@@ -34,12 +34,12 @@ resource "google_compute_disk" "minecraft" {
 }
 
 # Static IP address
-resource "google_compute_address" "minecraft" {
+resource google_compute_address minecraft {
   name   = "minecraft-ip"
   region = local.region
 }
 
-resource "google_compute_instance_group_manager" "minecraft" {
+resource google_compute_instance_group_manager minecraft {
   name               = "minecraft"
   base_instance_name = "minecraft"
   target_size        = 1
@@ -50,8 +50,9 @@ resource "google_compute_instance_group_manager" "minecraft" {
   }
 }
 
-# Template that runs minecraft from a docker container
-resource "google_compute_instance_template" "minecraft" {
+# Template that runs minecraft from a docker container on a compute instance
+# Is there a cheaper alternative?
+resource google_compute_instance_template minecraft {
   name_prefix  = "minecraft-template-"
   machine_type = var.machine_type
   tags         = ["minecraft"]
@@ -96,11 +97,11 @@ resource "google_compute_instance_template" "minecraft" {
   }
 }
 
-resource "google_compute_network" "minecraft" {
+resource google_compute_network minecraft {
   name = "minecraft"
 }
 
-resource "google_compute_firewall" "minecraft" {
+resource google_compute_firewall minecraft {
   name    = "minecraft"
   network = google_compute_network.minecraft.name
   allow {
