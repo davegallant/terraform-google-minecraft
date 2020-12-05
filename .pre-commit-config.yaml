@@ -10,6 +10,5 @@ repos:
   hooks:
     - id: terraform_fmt
     - id: terraform_tflint
-      args: ['--args=--deep']
     - id: terraform_validate
       args: ['--args=-json']

@@ -8,5 +8,6 @@ pkgs.mkShell {
     pkgs.terraform_0_13
     pkgs.google-cloud-sdk
     pkgs.python38Packages.pre-commit
+    pkgs.tflint
   ];
 }

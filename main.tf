@@ -51,7 +51,6 @@ resource google_compute_instance_group_manager minecraft {
 }
 
 # Template that runs minecraft from a docker container on a compute instance
-# Is there a cheaper alternative?
 resource google_compute_instance_template minecraft {
   name_prefix  = "minecraft-template-"
   machine_type = var.machine_type
