@@ -1,6 +1,7 @@
 terraform {
   backend "gcs" {
     prefix = "minecraft"
+    bucket = "davegallant-terraform-state"
   }
 }
 
