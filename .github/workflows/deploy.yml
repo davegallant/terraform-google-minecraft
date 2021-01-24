@@ -24,9 +24,9 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 0.14.4
-      - run: terraform init
+      - run: export TF_VAR_state_bucket=davegallant-terraform-state
+      - run: terraform init -var-file dave.tfvars -backend-config "bucket=$TF_VAR_state_bucket"
       - run: echo "$TFVARS" > dave.tfvars
         env:
           TFVARS: ${{ secrets.TFVARS }}
-      - id: plan
-        run: terraform apply -auto-approve -var-file dave.tfvars
+      - run: terraform apply -auto-approve -var-file dave.tfvars
