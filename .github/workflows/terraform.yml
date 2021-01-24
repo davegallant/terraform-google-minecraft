@@ -17,6 +17,7 @@ jobs:
           terraform_version: "0.14.4"
 
       - name: Terraform Format
+        id: fmt
         run: terraform fmt -check -diff
 
       - name: Terraform Init
@@ -33,6 +34,7 @@ jobs:
           export_default_credentials: true
 
       - name: Initialize Terraform Backend
+        id: init
         run: export TF_VAR_state_bucket=davegallant-terraform-state && terraform init -backend-config "bucket=$TF_VAR_state_bucket"
 
       - name: Pipe variables to file
@@ -58,7 +60,7 @@ jobs:
             #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
             #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
             <details><summary>Show Plan</summary>
-            \`\`\`
+            \`\`\`\n
             ${process.env.PLAN}
             \`\`\`
             </details>
