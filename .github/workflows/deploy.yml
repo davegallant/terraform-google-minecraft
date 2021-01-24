@@ -18,14 +18,11 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
-      - name: Use gcloud CLI
-        run: gcloud info
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 0.14.4
-      - run: export TF_VAR_state_bucket=davegallant-terraform-state
-      - run: terraform init -var-file dave.tfvars -backend-config "bucket=$TF_VAR_state_bucket"
+      - run: TF_VAR_state_bucket=davegallant-terraform-state terraform init -backend-config "bucket=$TF_VAR_state_bucket"
       - run: echo "$TFVARS" > dave.tfvars
         env:
           TFVARS: ${{ secrets.TFVARS }}
