@@ -1,3 +1,8 @@
+variable "state_bucket" {
+  description = "The GCS bucket name"
+  type        = string
+}
+
 variable "google_cloud_project_id" {
   description = "The project ID and project number are displayed on the project Dashboard Project info card"
   type        = string
