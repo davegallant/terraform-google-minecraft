@@ -27,9 +27,9 @@ $ nix-shell
 $ ./env.sh
 
 $ gcloud auth application-default login
-# The initialization prompts for a storage bucket that must be manually created and specified
+# The initialization requires an existing storage bucket that must be manually created and specified
 # https://cloud.google.com/storage/docs/creating-buckets
-$ terraform init
+$ terraform init -backend-config "bucket=my-bucket"
 $ terraform apply -var-file example.tfvars
 ```
 
