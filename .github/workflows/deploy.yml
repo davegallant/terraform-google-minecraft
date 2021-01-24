@@ -12,18 +12,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@master
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
-      - name: Setup Terraform
+
+      - name: Terraform Setup
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 0.14.4
-      - run: export TF_VAR_state_bucket=davegallant-terraform-state && terraform init -backend-config "bucket=$TF_VAR_state_bucket"
-      - run: echo "$TFVARS" > dave.tfvars
+
+      - name: Terraform Initialize
+        run: export TF_VAR_state_bucket=davegallant-terraform-state && terraform init -backend-config "bucket=$TF_VAR_state_bucket"
+
+      - name: Pipe variables to file
+        run: echo "$TFVARS" > dave.tfvars
         env:
           TFVARS: ${{ secrets.TFVARS }}
-      - run: terraform apply -auto-approve -var-file dave.tfvars
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -var-file dave.tfvars
