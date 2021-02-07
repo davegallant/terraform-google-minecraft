@@ -94,7 +94,7 @@ jobs:
         run: exit 1
 
       - name: Terraform Plan
-        id: plan
+        id: plan-master
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         run: |
           terraform plan -no-color -var-file dave.tfvars
