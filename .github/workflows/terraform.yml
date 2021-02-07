@@ -60,13 +60,8 @@ jobs:
         id: plan
         run: |
           terraform plan -no-color -var-file dave.tfvars -out terraform.plan
+          terraform show -no-color terraform.plan > terraform-plan.log
         continue-on-error: true
-
-      - name: Upload Plan Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: terraform-plan
-          path: terraform.plan
 
       - name: Update Pull Request
         uses: actions/github-script@0.9.0
@@ -101,8 +96,8 @@ jobs:
         uses: actions/upload-artifact@v1
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         with:
-          name: terraform-plan
-          path: terraform.plan
+          name: terraform.plan.log
+          path: terraform.plan.log
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
