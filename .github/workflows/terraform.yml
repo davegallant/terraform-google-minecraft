@@ -1,4 +1,4 @@
-name: "Terraform"
+name: terraform
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   terraform:
-    name: "Terraform"
+    name: terraform
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -28,7 +28,7 @@ jobs:
       - name: Terraform Setup
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: "0.14.5"
+          terraform_version: "0.14.6"
 
       - name: Terraform Format
         id: fmt
@@ -99,6 +99,12 @@ jobs:
           name: terraform.plan.log
           path: terraform.plan.log
 
+  deploy:
+    name: terraform apply
+    runs-on: ubuntu-20.04
+    needs: terraform
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    environment: production
+    steps:
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         run: terraform apply -auto-approve terraform.plan

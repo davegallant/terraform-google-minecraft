@@ -1,10 +1,10 @@
-name: =~"^\\p{Lu}" // Must start with an uppercase letter.
+name: string
 
 #Step: {
   "continue-on-error"?: bool
   id?: string
   if?: string
-  name: =~"^\\p{Lu}" // Must start with an uppercase letter.
+  name: string
   run?: string
   uses?: string
   uses?: string
@@ -18,7 +18,7 @@ name: =~"^\\p{Lu}" // Must start with an uppercase letter.
 
 jobs: {
   terraform:  {
-    name: =~"^\\p{Lu}" // Must start with an uppercase letter.
+    name: string
     "runs-on": string
     steps: [...#Step]
   }

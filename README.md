@@ -1,6 +1,6 @@
 # terraform-google-minecraft
 
-![Terraform](https://github.com/davegallant/terraform-google-minecraft/workflows/Terraform/badge.svg)
+![terraform](https://github.com/davegallant/terraform-google-minecraft/workflows/terraform/badge.svg)
 
 This spins up a minecraft server using a static ip, a google compute instance and persistent disk.
 
