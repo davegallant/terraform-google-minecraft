@@ -100,9 +100,13 @@ jobs:
   cd:
     name: cd
     runs-on: ubuntu-20.04
+    needs: ci
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     environment: deploy
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Terraform Setup
         uses: hashicorp/setup-terraform@v1
         with:
