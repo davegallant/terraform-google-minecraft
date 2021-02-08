@@ -58,9 +58,7 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        run: |
-          terraform plan -no-color -var-file dave.tfvars -out terraform.plan
-          terraform show -no-color terraform.plan > terraform.plan.log
+        run: terraform plan -no-color -var-file dave.tfvars -out terraform.plan
         continue-on-error: true
 
       - name: Update Pull Request
@@ -96,8 +94,8 @@ jobs:
         uses: actions/upload-artifact@v1
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         with:
-          name: terraform.plan.log
-          path: terraform.plan.log
+          name: terraform.plan
+          path: terraform.plan
 
   deploy:
     name: terraform apply
@@ -106,5 +104,9 @@ jobs:
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     environment: production
     steps:
+      - name: Download Plan Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: terraform.plan
       - name: Terraform Apply
         run: terraform apply -auto-approve terraform.plan
