@@ -17,7 +17,13 @@ name: string
 }
 
 jobs: {
-  terraform:  {
+  ci:  {
+    name: string
+    "runs-on": string
+    steps: [...#Step]
+  }
+
+  cd:  {
     name: string
     "runs-on": string
     steps: [...#Step]
