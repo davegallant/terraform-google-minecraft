@@ -28,7 +28,7 @@ jobs:
       - name: Terraform Setup
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: "0.14.6"
+          terraform_version: 0.14.6
 
       - name: Terraform Format
         id: fmt
@@ -104,6 +104,10 @@ jobs:
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     environment: production
     steps:
+      - name: Terraform Setup
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.14.6
       - name: Download Plan Artifact
         uses: actions/download-artifact@v2
         with:
