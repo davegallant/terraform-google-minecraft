@@ -39,6 +39,33 @@ resource "google_compute_disk" "minecraft" {
   }
 }
 
+resource "google_compute_resource_policy" "backup_policy" {
+  name   = "minecraft-backup-policy"
+  region = var.region
+  snapshot_schedule_policy {
+    schedule {
+      daily_schedule {
+        days_in_cycle = 1
+        start_time    = "04:00"
+      }
+    }
+    retention_policy {
+      max_retention_days    = 7
+      on_source_disk_delete = "KEEP_AUTO_SNAPSHOTS"
+    }
+    snapshot_properties {
+      storage_locations = ["us"]
+    }
+  }
+
+}
+
+resource "google_compute_disk_resource_policy_attachment" "backup_policy_attachment" {
+  name = google_compute_resource_policy.backup_policy.name
+  disk = google_compute_disk.minecraft.name
+  zone = var.zone
+}
+
 # Static IP address
 resource "google_compute_address" "minecraft" {
   name   = "minecraft-ip"

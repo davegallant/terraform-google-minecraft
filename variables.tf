@@ -46,3 +46,9 @@ variable "preemptible" {
   type        = bool
   default     = true
 }
+
+variable "enable_snapshots" {
+  description = "Whether or not to enable daily snapshots"
+  type        = bool
+  default     = true
+}
