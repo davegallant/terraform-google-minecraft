@@ -50,7 +50,7 @@ resource "google_compute_resource_policy" "backup_policy" {
       }
     }
     retention_policy {
-      max_retention_days    = 7
+      max_retention_days    = var.snapshot_retention_days
       on_source_disk_delete = "KEEP_AUTO_SNAPSHOTS"
     }
     snapshot_properties {

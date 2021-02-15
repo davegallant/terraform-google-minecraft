@@ -52,3 +52,9 @@ variable "enable_snapshots" {
   type        = bool
   default     = true
 }
+
+variable "snapshot_retention_days" {
+  description = "The number of days to keep each incremental snapshot"
+  type        = number
+  default     = 30
+}
