@@ -2,7 +2,7 @@
 
 ![terraform](https://github.com/davegallant/terraform-google-minecraft/workflows/terraform/badge.svg)
 
-This spins up a minecraft server using a static ip, a google compute instance and persistent disk. By default, a daily snapshot policy is setup. This can be disabled in the variables.
+This spins up a minecraft server using a static ip, a google compute instance and persistent disk.
 
 ## Requirements
 
@@ -34,6 +34,10 @@ $ gcloud auth application-default login
 $ terraform init -backend-config "bucket=my-bucket"
 $ terraform apply -var-file example.tfvars
 ```
+
+## Snapshots
+
+By default, a daily incremental snapshot is scheduled. This can be disabled in the variables. The max retention of each snapshot defaults to 30 days.
 
 ## Notes
 
