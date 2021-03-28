@@ -17,7 +17,7 @@ and one of the following:
 
 If this server is always running, it will cost ~$15CAD/month.
 
-A [12-month free trial](https://cloud.google.com/free) includes $300 in credit.
+[GCP Free Tier](https://cloud.google.com/free) includes $300 in credit for ~~12 months~~ 90 days.
 
 ## Use
 
