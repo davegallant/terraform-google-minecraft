@@ -19,12 +19,6 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v2
 
-      - name: Cue Vet
-        run: |
-          export PATH=$PATH:$(go env GOPATH)/bin
-          go get -u cuelang.org/go/cmd/cue
-          cue vet schema.cue .github/workflows/terraform.yml
-
       - name: Terraform Setup
         uses: hashicorp/setup-terraform@v1
         with:
@@ -49,7 +43,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: export TF_VAR_state_bucket=davegallant-terraform-state && terraform init -backend-config "bucket=$TF_VAR_state_bucket"
+        run: export TF_VAR_state_bucket=saori-terraform-state && terraform init -backend-config "bucket=$TF_VAR_state_bucket"
 
       - name: Pipe variables to file
         run: echo "$TFVARS" > dave.tfvars
@@ -121,7 +115,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: export TF_VAR_state_bucket=davegallant-terraform-state && terraform init -backend-config "bucket=$TF_VAR_state_bucket"
+        run: export TF_VAR_state_bucket=saori-terraform-state && terraform init -backend-config "bucket=$TF_VAR_state_bucket"
 
       - name: Pipe variables to file
         run: echo "$TFVARS" > dave.tfvars
