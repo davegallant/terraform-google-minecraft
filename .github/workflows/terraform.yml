@@ -19,12 +19,6 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v2
 
-      - name: Cue Vet
-        run: |
-          export PATH=$PATH:$(go env GOPATH)/bin
-          go get -u cuelang.org/go/cmd/cue
-          cue vet schema.cue .github/workflows/terraform.yml
-
       - name: Terraform Setup
         uses: hashicorp/setup-terraform@v1
         with:
