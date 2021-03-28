@@ -3,10 +3,10 @@ name: terraform
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   ci:
@@ -92,7 +92,7 @@ jobs:
 
       - name: Upload Plan Artifact
         uses: actions/upload-artifact@v1
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         with:
           name: terraform.plan
           path: terraform.plan
@@ -101,7 +101,7 @@ jobs:
     name: cd
     runs-on: ubuntu-20.04
     needs: ci
-    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     environment: production
     steps:
       - name: Checkout
