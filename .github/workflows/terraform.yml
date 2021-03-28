@@ -49,7 +49,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: export TF_VAR_state_bucket=davegallant-terraform-state && terraform init -backend-config "bucket=$TF_VAR_state_bucket"
+        run: export TF_VAR_state_bucket=saori-terraform-state && terraform init -backend-config "bucket=$TF_VAR_state_bucket"
 
       - name: Pipe variables to file
         run: echo "$TFVARS" > dave.tfvars
@@ -121,7 +121,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: export TF_VAR_state_bucket=davegallant-terraform-state && terraform init -backend-config "bucket=$TF_VAR_state_bucket"
+        run: export TF_VAR_state_bucket=saori-terraform-state && terraform init -backend-config "bucket=$TF_VAR_state_bucket"
 
       - name: Pipe variables to file
         run: echo "$TFVARS" > dave.tfvars
