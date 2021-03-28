@@ -126,5 +126,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: terraform.plan
+
       - name: Terraform Apply
         run: terraform apply -auto-approve terraform.plan
