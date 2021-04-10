@@ -32,7 +32,7 @@ variable "seed" {
 variable "minecraft_version" {
   description = "The tag/version of the minecraft docker image. https://hub.docker.com/r/itzg/minecraft-server/tags"
   type        = string
-  default     = "2021.6.0-multiarch"
+  default     = "2021.8.0-multiarch"
 }
 
 variable "difficulty" {
